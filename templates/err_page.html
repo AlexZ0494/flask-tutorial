@@ -1,0 +1,7 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+{{ super() }}
+<p>Упс! Страницы нету. Вернуться на <a href="{{ url_for('index') }}">главную страницу</a>.</p>
+{% endblock %}
