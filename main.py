@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request, flash, session, redirect, url_for, abort
 
 app = Flask(__name__)
 
@@ -24,6 +24,8 @@ def about():
 
 @app.route('/profile/<username>')
 def profile(username):
+    if 'userLogged' not in session or session['userLogged'] != username:
+        abort(401)
     return f'Пользователь: {username}'
 
 
@@ -37,6 +39,15 @@ def contact():
         print(request.form)
     return render_template('contact.html', title = 'Обратная связь', H1='Обратная связь', menu=menu)
 
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if 'userLogged' in session:
+        return redirect(url_for('profile', username=session['userLogged']))
+    elif request.method == 'POST' and request.form['username'] == 'alex' and request.form['passwd'] == '123':
+        session['userLogged'] = request.form['username']
+        return redirect(url_for('profile', username=session['userLogged']))
+    return render_template('login.html', title = 'Авторизация', menu=menu)
 
 @app.errorhandler(404)
 def pageNotFound(error):
