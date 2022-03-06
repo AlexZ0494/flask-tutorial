@@ -5,6 +5,6 @@
 обучения микрофреймворку 
 [**Flask**](https://flask.palletsprojects.com/en/2.0.x/)
 
-> Обучение проходило по видео с канала 
-> :yt: [slefedu](https://www.youtube.com/watch?v=6jxveKOdyNg&list=PLA0M1Bcd0w8yrxtwgqBvT6OM4HkOU3xYn) 
+> Обучение проходило по видео с канала
+> ![avatar](https://img.icons8.com/color/18/000000/youtube-play.png) [slefedu](https://www.youtube.com/watch?v=6jxveKOdyNg&list=PLA0M1Bcd0w8yrxtwgqBvT6OM4HkOU3xYn) 
 
