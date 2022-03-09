@@ -3,5 +3,5 @@
 {% block content %}
 
 {{ super() }}
-{{ post }}
+{{ post | safe }}
 {% endblock %}
