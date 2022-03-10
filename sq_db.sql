@@ -17,5 +17,7 @@ id integer PRIMARY KEY AUTOINCREMENT,
 username text NOT NULL,
 email text NOT NULL,
 password text NOT NULL,
+avatar blob DEFAULT NULL,
 time integer NOT NULL
 );
+
