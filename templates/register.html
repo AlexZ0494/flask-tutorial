@@ -1,6 +1,6 @@
 {% extends 'index.html' %}
 
-{% block content %}
+{% block content -%}
 
 {{ super() }}
 
@@ -9,10 +9,25 @@
 {% endfor %}
 
 <form action="/register" method="post" class="form-contact">
-    <p><label>Имя пользователя: </label><input type="text" name="username" value="" required></p>
-    <p><label>Email: </label><input type="text" name="email" value="" required></p>
-    <p><label>Пароль: </label><input type="password" name="passwd" value="" required/></p>
-    <p><label>Повтор пароля: </label><input type="password" name="passwd_1" value="" required/></p>
-    <p><input type="submit" value="Регистрация"/></p>
+    {{ form.hidden_tag() }}
+{% for feeld in form if feeld.name not in ['csrf_token', 'sub'] -%}
+    <p>{{ feeld.label() }}
+        {% if feeld.errors %}
+        {{ feeld(class="invalid") }}
+        <span class="invalid-feedback">
+            {% for e in feeld.errors %}
+            {{ e }}
+            {% endfor %}
+        </span>
+        {% else %}
+            {{ feeld() }}
+        {% endif %}
+{% endfor %}
+    <p>{{ form.sub() }}</p>
+<!--    <p><label>Имя пользователя: </label><input type="text" name="username" value="" required></p>-->
+<!--    <p><label>Email: </label><input type="text" name="email" value="" required></p>-->
+<!--    <p><label>Пароль: </label><input type="password" name="passwd" value="" required/></p>-->
+<!--    <p><label>Повтор пароля: </label><input type="password" name="passwd_1" value="" required/></p>-->
+<!--    <p><input type="submit" value="Регистрация"/></p>-->
 </form>
 {% endblock %}

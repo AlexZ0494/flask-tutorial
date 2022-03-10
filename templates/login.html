@@ -9,10 +9,28 @@
 {% endfor %}
 
 <form action="" method="post" class="form-contact">
+    {{ form.hidden_tag() }}
+{% for feeld in form if feeld.name not in ['csrf_token', 'rememer', 'submint'] %}
+    <p>{{ feeld.label() }}
+        {% if feeld.errors %}
+        {{ feeld(class="invalid") }}
+        <span class="invalid-feedback">
+            {% for e in feeld.errors %}
+            {{ e }}
+            {% endfor %}
+        </span>
+        {% else %}
+            {{ feeld() }}
+        {% endif %}
+{% endfor %}
+    <p>{{ form.rememer.label() }} {{ form.rememer() }}</p>
+    <p>{{ form.submint() }}</p>
+    <!--
     <p><label>Email: </label><input type="text" name="email" value="" required></p>
     <p><label>Пароль: </label><input type="password" name="passwd" value="" required/></p>
     <p><input type="checkbox" name="remaine">Запомнить меня</p>
     <p><input type="submit" value="Войти"/></p>
+    -->
     <hr align="left" width="300px">
     <p><a href="{{url_for('register')}}">Регистрация</a> </p>
 </form>
